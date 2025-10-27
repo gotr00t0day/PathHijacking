@@ -66,7 +66,6 @@ std::vector<std::string> checkPATHS() {
         struct stat st;
         if (stat(dir.c_str(), &st) == 0) {
             writable_dir.emplace_back(dir.c_str());
-            //std::cout << "  Writable: " << (access(dir.c_str(), W_OK) == 0 ? "YES" : "NO") << "\n";
         }
 
     }
@@ -79,31 +78,12 @@ std::vector<std::string> checkPATHS() {
                 struct stat sta;
                 if (stat(path.c_str(), &sta) == 0) {
                     writable_files.emplace_back(path.c_str());
-                    //std::cout << "  Writable Files: " << path.c_str() << "\n";
                 }
             } catch (const std::filesystem::filesystem_error& e) {
                 continue;
             }
         }
     }
-    /*
-    std::vector<std::string> dirsList = dirs;
-    std::vector<std::string> prioritize_dirs = prioritize(writable_dir);
-    std::cout << "Prioritized Directories: " << YELLOW << prioritize_dirs.size() << RESET << "\n";
-    std::cout << "Writable files: " << YELLOW << writable_files.size() << RESET << "\n";
-    std::cout << "Writable Dirs: " << YELLOW << writable_dir.size() << RESET << "\n\n";
-
-    std::cout << ":::Directories in Path " << "(" << YELLOW << dirsList.size() << RESET << ")" << ":::" "\n";
-    for (const auto& dl : dirsList) {
-        std::cout << YELLOW << dl << RESET << "\n";
-    }
-    std::cout << "\n";
-
-    std::cout << ":::Prioritized Directories:::" << "(" << YELLOW << prioritize_dirs.size() << RESET << ")" << ":::" "\n";
-    for (const auto& prd : prioritize_dirs) {
-        std::cout << YELLOW << prd << RESET << "\n";
-    }
-    */
     return writable_dir;
 }
 
