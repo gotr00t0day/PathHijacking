@@ -21,16 +21,8 @@ std::vector<std::string> checkFileOwnership(const std::string& filepath) {
     
     if (stat(filepath.c_str(), &fileInfo) == 0) {
         uid_t owner_uid = fileInfo.st_uid;
-        // gid_t owner_gid = fileInfo.st_gid; // Unused for now
-
         struct passwd *pw = getpwuid(owner_uid);
         std::string owner_name = pw ? pw->pw_name : "unknown";
-        
-        /*
-        bool user_writable = (fileInfo.st_mode & S_IWUSR);
-        bool group_writable = (fileInfo.st_mode & S_IWGRP);
-        bool other_writable = (fileInfo.st_mode & S_IWOTH);
-        */
 
         std::string fileInfo = filepath + " " + GREEN + owner_name;
         owner.emplace_back(fileInfo);
