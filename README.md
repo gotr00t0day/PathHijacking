@@ -1,9 +1,5 @@
 # Path Hijacking Vulnerability Scanner
 
-**Author:** c0d3Ninja  
-**Version:** 1.0  
-**Date:** 2025-10-27
-
 A security tool designed to detect potential PATH hijacking vulnerabilities on Unix-like systems. This tool scans your system's PATH environment variable for writable directories and identifies potential security risks where malicious actors could inject executable files.
 
 ## Overview
